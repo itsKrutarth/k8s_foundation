@@ -1,0 +1,25 @@
+apiVersion: v1 # version of k8s
+kind: Pod  # we can write other service kind like deployment, service, config map, stateful stats
+metadata: # gives identity to our pod
+  name: my-Pod
+  lables:
+    app: catalog
+spec: # what the pod will run
+  containers:  # list item, because in a pod, we can run 1 or more containers
+    - name: catalog
+      image: "krutarthd0ck/my-httpd-portfolio:4.0"
+      ports:
+        - name: http
+          containerPort: 8080
+          protocol: TCP
+      resources:
+        limits:
+          cpu: "200m"
+          memory: "256Mi"
+        requests:
+          cpu: "100m"
+          memory: "128Mi"
+      redinessProbe:
+      httpGet:
+        path: /
+        port: 8080
