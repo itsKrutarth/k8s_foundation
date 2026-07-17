@@ -7,10 +7,10 @@ metadata: # gives identity to our pod
 spec: # what the pod will run
   containers:  # list item, because in a pod, we can run 1 or more containers
     - name: catalog
-      image: "267673636159.dkr.ecr.us-east-2.amazonaws.com/goapp"
+      image: "267673636159.dkr.ecr.us-east-2.amazonaws.com/goapp:v1"
       ports:
         - name: http
-          containerPort: 80
+          containerPort: 8080
           protocol: TCP
       resources:
         limits:
@@ -22,4 +22,4 @@ spec: # what the pod will run
       readinessProbe:
         httpGet:
           path: /
-          port: 80
+          port: 8080
